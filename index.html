@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>My Spotify Profile</title>
+        <script src="src/client.js" type="module"></script>
+        <script src="src/songHandler.js"></script>
+    </head>
+        <style>
+            html {
+                margin:    0 auto;
+                max-width: 1200px;
+            }
+            
+            select {
+                min-width: 300px;
+                max-width: 500px;
+            }
+            
+            button {
+                margin-left: 10px;
+                margin-right: 10px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        
+            .grid-container {
+              display: grid;
+              grid-template-columns: auto auto;
+              padding: 10px;
+            }
+
+            .grid-item {
+
+            }
+        </style>
+    <body>
+        <h1>Spotify Playlist Organizer</h1>
+
+        <div class="grid-container">
+            <div class="grid-item">
+                <section id="profile">
+                <h2>Logged in as <span id="displayName"></span></h2>
+                <span id="avatar"></span>
+                <ul>
+                    <li>User ID: <span id="id"></span></li>
+                    <li>Email: <span id="email"></span></li>
+                    <li>Spotify URI: <a id="uri" href="#"></a></li>
+                    <li>Link: <a id="url" href="#"></a></li>
+                    <li>Profile Image: <span id="imgUrl"></span></li>
+                </ul>
+                </section>
+            </div>
+            
+            <div class="grid-item">
+                <h2>User's Playlists</h2>
+                <select id="userPlaylists" name="userPlaylists" size="10"></select>
+                <br>
+                External playlist: <input id="customPlaylist"></input><button id="loadCustomPlaylist">Load custom playlist</button>
+            </div>
+        </div>
+        
+        <div class="grid-container">
+            <div class="grid-item">
+                <h2>Your playlist</h2>
+                <select id="playlist" name="playlist" size="15">
+                </select>
+                
+                <h2>Details</h2>
+                <section>
+                    Song name: <span id="songName"></span><br>
+                    Artists: <span id="songArtists"></span><br>
+                    Song tempo: <span id="songTempo"></span><br>
+                    Song key: <span id="songKey"></span><br>
+                    Song time signature: <span id="songTimeSignature"></span><br>
+                </section>
+            </div>
+
+            <div class="grid-item">
+                <h2>New playlist</h2>
+                New playlist name: <input id="newPlaylistName"></input><br>
+                <select id="newPlaylist" name="newPlaylist" size="15">
+                </select>
+                
+                <h2>Details</h2>
+                <section>
+                    Song name: <span id="filteredSongName"></span><br>
+                    Song tempo: <span id="filteredSngTempo"></span><br>
+                    Song key: <span id="filteredSongKey"></span><br>
+                    Song time signature: <span id="filteredSongTimeSignature"></span><br>
+                </section>
+                
+                <h2>Filter</h2>
+                <ul>
+                    <li>Tempo: from <input type="number" id="filterLowTempo"></input> to <input type="number" id="filterHighTempo"></input></li>
+                    <li>Key: <select id="filterKey">
+                                        <option>[ Ignore ]</option>
+                                        <option>C (also B♯, D♭♭)</option>
+                                        <option>C♯, D♭ (also B♯♯)</option>
+                                        <option>D (also C♯♯, E♭♭)</option>
+                                        <option>D♯, E♭ (also F♭♭)</option>
+                                        <option>E (also D♯♯, F♭)</option>
+                                        <option>F (also E♯, G♭♭)</option>
+                                        <option>F♯, G♭ (also E♯♯)</option>
+                                        <option>G (also F♯♯, A♭♭)</option>
+                                        <option>G♯, A♭</option>
+                                        <option>A (also G♯♯, B♭♭)</option>
+                                        <option>A♯, B♭ (also C♭♭)</option>
+                                        <option>B (also A♯♯, C♭)</option>
+                             </select></li>
+                     <li>Time signature: <select id="filterTimeSignature">
+                                            <option>[ Ignore ]</option>
+                                            <option>3/4</option>
+                                            <option>4/4</option>
+                                            <option>5/4</option>
+                                            <option>6/4</option>
+                                            <option>7/4</option>
+                                         </select></li>
+                    <li>Artist: <select id="filterArtist" name="filterArtist"></select></li>
+                </ul>
+                
+                <input type="checkbox" id="preventDuplicates" value="preventDuplicates">
+                <label for="trackDuplicates">Prevent track duplicates</label><br>
+
+                <button id="filterNow">Filter</button>
+                <button id="copyFromYourPlaylist">Copy from your playlist</button>
+                <button id="removeSelected">Remove selected</button>
+                <button id="clearNewPlaylist">Clear the playlist</button>
+                <button id="sendNewPlaylist">Send the playlist</button>
+            </div>
+        </div>
+    </body>
+</html>
